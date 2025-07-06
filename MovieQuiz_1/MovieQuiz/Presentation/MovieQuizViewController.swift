@@ -48,6 +48,7 @@ final class MovieQuizViewController: UIViewController {
         let firstQuestion = questions[currentQuestionIndex]
         let step = convert(model: firstQuestion)
         show(quiz: step)
+        
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -59,10 +60,13 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func show(quiz step: QuizStepViewModel) {
-        imageView.layer.borderWidth = 0
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
+        
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.layer.borderWidth = 0
     }
 
     
@@ -99,8 +103,8 @@ final class MovieQuizViewController: UIViewController {
     
     private func showAnswerResult(isCorrect: Bool) {
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 5
-        imageView.layer.cornerRadius = 6
+        imageView.layer.borderWidth = 8
+        imageView.layer.cornerRadius = 20
         
         if isCorrect {
             correctAnswers += 1
